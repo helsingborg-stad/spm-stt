@@ -18,7 +18,7 @@ let package = Package(
     targets: [
         .target(
             name: "STT",
-            dependencies: ["AudioSwitchboard"]),
+            dependencies: ["AudioSwitchboard","FFTPublisher"]),
         .testTarget(
             name: "STTTests",
             dependencies: ["STT"]),
