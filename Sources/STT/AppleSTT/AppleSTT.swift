@@ -98,7 +98,7 @@ public class AppleSTT: STTService, ObservableObject {
             guard let currentResult = currentResult else {
                 return
             }
-            let r = STTResult(currentResult.string, confidence: currentResult.confidence, locale:locale, final:true)
+            let r = STTResult(currentResult.string, confidence: currentResult.confidence, locale:locale, isFinal:true)
             self.resultSubject.send(r)
             if self.status == .recording {
                 if self.mode == .dictation || self.mode == .unspecified {
@@ -240,7 +240,7 @@ public class AppleSTT: STTService, ObservableObject {
                 this.startTimer()
             }
             let parts = result.bestTranscription.segments.map { STTResult.Segment.init(string: $0.substring, confidence: Double($0.confidence)) }
-            let r = STTResult(result.bestTranscription.formattedString, segments: parts,locale:this.locale, final: result.isFinal)
+            let r = STTResult(result.bestTranscription.formattedString, segments: parts,locale:this.locale, isFinal: result.isFinal)
             if this.currentResult?.string == r.string && this.currentResult?.confidence == r.confidence && this.currentResult?.isFinal == r.isFinal  {
                 return
             }
@@ -282,9 +282,9 @@ public class AppleSTT: STTService, ObservableObject {
         self.errorPublisher = errorSubject.eraseToAnyPublisher()
         self.fft = fft
         self.maxSilence = maxSilence
-        self.audioSwitchboard = audioSwitchBoard
-        self.available = audioSwitchBoard.availableServices.contains(.record)
-        audioSwitchBoard.$availableServices.sink { [weak self] services in
+        self.audioSwitchboard = audioSwitchboard
+        self.available = audioSwitchboard.availableServices.contains(.record)
+        audioSwitchboard.$availableServices.sink { [weak self] services in
             if services.contains(.record) == false {
                 self?.stop()
                 self?.available = false
