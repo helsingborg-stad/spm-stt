@@ -261,7 +261,7 @@ public class AppleSTT: STTService, ObservableObject {
         let rate = Float(inputNodeFormat.sampleRate)
         inputNode.installTap(onBus: bus, bufferSize: 1024, format: inputNodeFormat) { [weak self] (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
             /// Reducing the frameLeth to 512 makes the FFT considerably faster.
-            /// It's a something of a hack since apple doens't allow buffersize below in the installTap method.
+            /// It's something of a hack since apple doens't allow buffersize below in the installTap method.
             /// There is a risk that this function will cause an error at some point.
             buffer.frameLength = 512
             self?.recognitionRequest?.append(buffer)
