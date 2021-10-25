@@ -8,7 +8,6 @@ Right now there are two known public implementations of `STTService`.
 |Name|Package|
 |:--|:--|
 |AppleSTT|included in the framework|
-|MSTTS| included in https://github.com/helsingborg-stad/spm-ms-cognitive-services|
 
 
 ```swift
