@@ -2,10 +2,8 @@
     @testable import STT
 
     final class STTTests: XCTestCase {
-        func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            //XCTAssertEqual(STT().text, "Hello, World!")
+        func testSupportsLocale() {
+            XCTAssert(AppleSTT.hasSupportFor(locale: Locale(identifier: "en_US")))
+            XCTAssertFalse(AppleSTT.hasSupportFor(locale: Locale(identifier: "agq_CM")))
         }
     }
