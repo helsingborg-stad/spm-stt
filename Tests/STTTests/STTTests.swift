@@ -2,8 +2,10 @@ import XCTest
 @testable import STT
 
 final class STTTests: XCTestCase {
-    func testSupportsLocale() {
-        XCTAssert(AppleSTT.hasSupportFor(locale: Locale(identifier: "en_US")))
-        XCTAssertFalse(AppleSTT.hasSupportFor(locale: Locale(identifier: "agq_CM")))
+    func testAppleSupport() {
+        XCTAssertTrue(AppleSTT.hasSupportFor(locale: Locale(identifier: "sv-SE")))
+        XCTAssertTrue(AppleSTT.hasSupportFor(locale: Locale(identifier: "sv")))
+        XCTAssertFalse(AppleSTT.hasSupportFor(locale: Locale(identifier: "")))
+        XCTAssertFalse(AppleSTT.hasSupportFor(locale: Locale(identifier: "benz-TZ")))
     }
 }

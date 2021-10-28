@@ -332,8 +332,10 @@ public class AppleSTT: STTService, ObservableObject {
     /// - Parameter locale: the locale to compare with
     /// - Returns: true if available false if not
     public static func hasSupportFor(locale:Locale) -> Bool {
-        let identifier = locale.identifier.replacingOccurrences(of: "_", with: "-")
-        return SFSpeechRecognizer.supportedLocales().contains { $0.identifier == identifier }
+        guard let langauge = locale.languageCode else {
+            return false
+        }
+        return SFSpeechRecognizer.supportedLocales().contains { $0.identifier.starts(with: langauge) }
     }
 }
 
