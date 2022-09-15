@@ -1,5 +1,8 @@
 # STT
+## DEPRECATED
+Package will not recieve any updates, please use the STT library in https://github.com/helsingborg-stad/spm-daisy instead.
 
+## About
 STT provides a common interface for Speech To Text services implementing the `STTService` protocol.
 
 ## Usage
